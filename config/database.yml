@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: pterodact-api_development
+
+test:
+  <<: *default
+  database: pterodact-api_test
+
+production:
+  <<: *default
+  database: pterodact-api_production
+  username: pterodact-api
+  password: <%= ENV['PTERODACT-API_DATABASE_PASSWORD'] %>
