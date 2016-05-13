@@ -1,3 +1,5 @@
+require 'auth_token'
+
 class AuthController < ApplicationController
   def authenticate
     user = User.find_by(email: params[:email])
@@ -12,7 +14,7 @@ class AuthController < ApplicationController
   private
     def authentication_payload(user)
       return nil unless user && user.id
-      { auth_token: AuthToken.encode( { user_id: id } ),
+      { auth_token: AuthToken.encode( { user_id: user.id } ),
         user: { id: user.id, email: user.email } }
     end
 end

@@ -12,5 +12,6 @@ class PasswordResets < ApplicationController
       render json: 'Password token expired', status: 419
     else
       render json: (put authentication payload here)
+    end
   end
 end
